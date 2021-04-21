@@ -14,6 +14,10 @@ ul > li {
     height: 200px;
 }
 
+.marked {
+    background: white;
+}
+
 ul > li:hover {
     background-color: yellow;
 }

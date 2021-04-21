@@ -33,7 +33,7 @@ class Board {
     if (!this.isEmptyPos(pos)) {
       throw new MoveError('Is not an empty position!');
     }
-
+    console.log("Successful move.")
     this.grid[pos[0]][pos[1]] = mark;
   }
 

@@ -15,7 +15,13 @@ class View {
   }
 
   makeMove($square) {
-    
+    const pos = $square.data("pos");
+    console.log(pos);
+    $square.toggleClass("marked unmarked");
+    $square.append(this.game.currentPlayer);
+    this.game.playMove(pos);
+    alert("Invalid move!");
+    console.log(this.game.currentPlayer);
   };
 
   setupBoard() {
@@ -23,11 +29,13 @@ class View {
     for (let rowIdx = 0; rowIdx < 3; rowIdx++) {
       for (let colIdx = 0; colIdx < 3; colIdx++) {
         $("ul").append("<li>");
-        $('li:last-child').attr("data-pos", [rowIdx, colIdx]);
+        $('li:last-child')
+          .attr("data-pos", [rowIdx, colIdx])
+          .addClass("unmarked")
+
       };
     };
   };
 };
-
 
 module.exports = View;
