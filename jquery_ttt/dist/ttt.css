@@ -1,0 +1,19 @@
+ul {
+    display: grid;
+    flex-wrap: wrap;
+    width: 600px;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 33% 33% 33%;
+}
+
+ul > li {
+    /* width: 33%; */
+    border: 1px solid black;
+    background: #ccc;
+    list-style: none;
+    height: 200px;
+}
+
+ul > li:hover {
+    background-color: yellow;
+}
