@@ -20,10 +20,20 @@ class View {
   makeMove($square) {
     const pos = $square.data("pos").split(',');
   
-    $square.toggleClass("marked unmarked");
-    $square.append(this.game.currentPlayer);
     try {
+      const currentMark = this.game.currentPlayer;
       this.game.playMove(pos);
+      $square.append(currentMark);
+      $square.toggleClass(`${currentMark} unmarked`);
+      if (this.game.isOver()) {
+        if (this.game.winner()) {
+          this.$el.toggleClass(`winner-${currentMark}`)
+          this.$el.addClass("game-over");
+          alert(`${this.game.winner()} is the winner!`)
+        } else {
+          alert("No one wins...")
+        }
+      }
     }
     catch(err) {
       alert("Invalid move!");

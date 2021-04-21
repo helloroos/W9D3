@@ -14,8 +14,27 @@ ul > li {
     height: 200px;
 }
 
-.marked {
+.x, .o {
     background: white;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 100px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.winner-x .x, .winner-o .o {
+    background: green;    
+    color: white
+}
+
+.game-over li {
+    color: red;
+}
+
+#o::after {
+    color: green;
 }
 
 ul > li:hover {
