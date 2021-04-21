@@ -45,7 +45,7 @@ eval("\nconst MoveError = function (msg) { this.msg = msg; };\n\n// MoveError re
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const View = __webpack_require__ (/*! ./ttt-view.js */ \"./src/ttt-view.js\");\nconst Game = __webpack_require__ (/*! ../node_solution/game.js */ \"./node_solution/game.js\");\n\n  $(() => {\n    const $el = $('.ttt');\n    const g = new Game();\n    const v = new View(g, $el);\n  });\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const View = __webpack_require__ (/*! ./ttt-view.js */ \"./src/ttt-view.js\");\nconst Game = __webpack_require__ (/*! ../node_solution/game.js */ \"./node_solution/game.js\");\n\n  $(() => {\n    const $el = $('.ttt');\n    const g = new Game();\n    console.log(g);\n    const v = new View(g, $el);\n  });\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -55,7 +55,7 @@ eval("const View = __webpack_require__ (/*! ./ttt-view.js */ \"./src/ttt-view.js
   \*************************/
 /***/ ((module) => {
 
-eval("class View {\n  constructor(game, $el) {\n    this.game = game;\n    this.$el = $el;\n    this.setupBoard();\n    this.bindEvents();\n  }\n\n  bindEvents() {\n    $(this.$el).on(\"click\", \"li\", (e) => {\n      const $square = $(e.currentTarget);\n      console.log($square);\n      this.makeMove($square);\n    });\n  }\n\n  makeMove($square) {\n    const pos = $square.data(\"pos\");\n    console.log(pos);\n    $square.toggleClass(\"marked unmarked\");\n    $square.append(this.game.currentPlayer);\n    this.game.playMove(pos);\n    alert(\"Invalid move!\");\n    console.log(this.game.currentPlayer);\n  };\n\n  setupBoard() {\n    this.$el.append(\"<ul>\");\n    for (let rowIdx = 0; rowIdx < 3; rowIdx++) {\n      for (let colIdx = 0; colIdx < 3; colIdx++) {\n        $(\"ul\").append(\"<li>\");\n        $('li:last-child')\n          .attr(\"data-pos\", [rowIdx, colIdx])\n          .addClass(\"unmarked\")\n\n      };\n    };\n  };\n};\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
+eval("class View {\n  constructor(game, $el) {\n    this.game = game;\n    this.$el = $el;\n    this.setupBoard();\n    this.bindEvents();\n    console.log(this.game.playMove[0,0]);\n    console.log(this.game.currentPlayer);\n    console.log(this.game.playMove[0, 1]);\n  }\n\n  bindEvents() {\n    $(this.$el).on(\"click\", \"li\", (e) => {\n      const $square = $(e.currentTarget);\n      // console.log($square);\n      this.makeMove($square);\n    });\n  }\n\n  makeMove($square) {\n    const pos = $square.data(\"pos\").split(',');\n  \n    $square.toggleClass(\"marked unmarked\");\n    $square.append(this.game.currentPlayer);\n    try {\n      this.game.playMove(pos);\n    }\n    catch(err) {\n      alert(\"Invalid move!\");\n    }\n  };\n\n  setupBoard() {\n    this.$el.append(\"<ul>\");\n    for (let rowIdx = 0; rowIdx < 3; rowIdx++) {\n      for (let colIdx = 0; colIdx < 3; colIdx++) {\n        $(\"ul\").append(\"<li>\");\n        $('li:last-child')\n          .attr(\"data-pos\", [rowIdx, colIdx])\n          .addClass(\"unmarked\")\n\n      };\n    };\n  };\n};\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
 
 /***/ })
 

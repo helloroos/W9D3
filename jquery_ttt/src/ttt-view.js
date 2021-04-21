@@ -4,24 +4,30 @@ class View {
     this.$el = $el;
     this.setupBoard();
     this.bindEvents();
+    console.log(this.game.playMove[0,0]);
+    console.log(this.game.currentPlayer);
+    console.log(this.game.playMove[0, 1]);
   }
 
   bindEvents() {
     $(this.$el).on("click", "li", (e) => {
       const $square = $(e.currentTarget);
-      console.log($square);
+      // console.log($square);
       this.makeMove($square);
     });
   }
 
   makeMove($square) {
-    const pos = $square.data("pos");
-    console.log(pos);
+    const pos = $square.data("pos").split(',');
+  
     $square.toggleClass("marked unmarked");
     $square.append(this.game.currentPlayer);
-    this.game.playMove(pos);
-    alert("Invalid move!");
-    console.log(this.game.currentPlayer);
+    try {
+      this.game.playMove(pos);
+    }
+    catch(err) {
+      alert("Invalid move!");
+    }
   };
 
   setupBoard() {
