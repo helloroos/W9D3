@@ -45,7 +45,7 @@ eval("\nconst MoveError = function (msg) { this.msg = msg; };\n\n// MoveError re
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const View = __webpack_require__ (/*! ./ttt-view.js */ \"./src/ttt-view.js\");\nconst Game = __webpack_require__ (/*! ../node_solution/game.js */ \"./node_solution/game.js\");\n\n  $(() => {\n    console.log('hello')\n    const g = new Game();\n    const v = new View(g);\n  });\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const View = __webpack_require__ (/*! ./ttt-view.js */ \"./src/ttt-view.js\");\nconst Game = __webpack_require__ (/*! ../node_solution/game.js */ \"./node_solution/game.js\");\n\n  $(() => {\n    const $el = $('.ttt');\n    const g = new Game();\n    const v = new View(g, $el);\n  });\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -55,7 +55,7 @@ eval("const View = __webpack_require__ (/*! ./ttt-view.js */ \"./src/ttt-view.js
   \*************************/
 /***/ ((module) => {
 
-eval("class View {\n  constructor(game, $el) {\n    this.game = game;\n    this.$el = $el;\n    this.setupBoard();\n  }\n\n  bindEvents() {}\n\n  makeMove($square) {}\n\n  setupBoard() {\n    $(\".ttt\").append(\"<ul>\");\n    for (let i = 0; i < 9; i++) {\n      $(\"ul\").append(\"<li>\");\n    };\n  };\n};\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
+eval("class View {\n  constructor(game, $el) {\n    this.game = game;\n    this.$el = $el;\n    this.setupBoard();\n    this.bindEvents();\n  }\n\n  bindEvents() {\n    $(this.$el).on(\"click\", \"li\", (e) => {\n      const $square = $(e.currentTarget);\n      console.log($square);\n      this.makeMove($square);\n    });\n  }\n\n  makeMove($square) {\n    \n  };\n\n  setupBoard() {\n    this.$el.append(\"<ul>\");\n    for (let rowIdx = 0; rowIdx < 3; rowIdx++) {\n      for (let colIdx = 0; colIdx < 3; colIdx++) {\n        $(\"ul\").append(\"<li>\");\n        $('li:last-child').attr(\"data-pos\", [rowIdx, colIdx]);\n      };\n    };\n  };\n};\n\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
 
 /***/ })
 
